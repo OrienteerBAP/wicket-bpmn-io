@@ -1,24 +1,25 @@
 {
-  "name": "simple",
-  "version": "0.0.1",
+  "name": "wicket-bpmn-io",
+  "version": "0.0.2",
+  "main": "src/main/java/org/orienteer/wicketbpmnio/component/common.js",
   "dependencies": {
-    "browserify": "*",
-    "uglifyjs": "*",
-    "bpmn-js": "*",
-    "bpmn-js-properties-panel": "*",
-    "bpmn-moddle": "^0.12.0",
-    "diagram-js": "^0.16.3",
-    "diagram-js-direct-editing": "^0.15.1",
-    "diagram-js-origin": "^0.14.0",
-    "ids": "^0.2.0",
-    "inherits": "^2.0.1",
-    "lodash": "^3.0.1",
-    "min-dom": "^0.2.0",
-    "object-refs": "^0.1.1"
-  },
-  "scripts": {
-    "build-js": "browserify src/main/java/org/orienteer/wicketbpmnio/component/common.js > target/src/resources/org/orienteer/wicketbpmnio/component/common.js",
-    "build-min": "uglifyjs target/src/resources/org/orienteer/wicketbpmnio/component/common.js > target/src/resources/org/orienteer/wicketbpmnio/component/common.min.js",
-    "build": "npm run build-js && npm run build-min"
+    "brfs": "^1.2.0",
+    "grunt": "~1.0.1",
+    "grunt-cli": "*",
+    "grunt-browserify": "^5.0.0",
+    "grunt-mkdir": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-connect": "~1.0.2",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-watch": "~1.0.0",
+    "load-grunt-tasks": "~3.5.0",
+    "bpmn-js": "^0.15.0",
+    "bpmn-js-properties-panel": "^0.7.0",
+    "camunda-bpmn-moddle": "^0.5.1",
+    "diagram-js": "^0.15.0",
+    "lodash": "^3.0.0"
   }
 }
