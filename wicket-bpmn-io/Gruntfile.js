@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         config: {
-            source: 'src/main/java/org/orienteer/wicketbpmnio/component',
+            source: 'src/main/resources/org/orienteer/wicketbpmnio/component',
             dist: 'target/src/resources/org/orienteer/wicketbpmnio/component'
         },
 
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
             },
             app: {
                 files: {
-                    '<%= config.dist %>/common.js': ['<%= config.source %>/common.js']
+                    '<%= config.dist %>/bpmnviewer.js': ['<%= config.source %>/bpmnviewer.js']
                 }
             }
         },
@@ -55,13 +55,13 @@ module.exports = function(grunt) {
             },
             target: {
                 files: {
-                    '<%= config.dist %>/common.min.js': ['<%= config.dist %>/common.js']
+                    '<%= config.dist %>/bpmnviewer.min.js': ['<%= config.dist %>/bpmnviewer.js']
                 }
             }
         },
 
         clean: {
-            target: ['<%= config.dist %>/common.js']
+            target: ['<%= config.dist %>/bpmnviewer.js']
         }
     });
 
