@@ -1,11 +1,6 @@
-function installBpmnViewer(id, xml) {
-// 	var elm = $('#'+id);
-// 	elm.text(xml);
-// }
+var BpmnViewer = require('bpmn-js');
 
-
-	var BpmnViewer = require('bpmn-js');
-
+window.installBpmnViewer = function(id, xml) {
 
 	var viewer = new BpmnViewer({ container: '#' + id });
 
@@ -18,5 +13,7 @@ function installBpmnViewer(id, xml) {
 	    console.log('something went wrong:', err);
 	  }
 	});
+
+	// console.log(id);
 
 }

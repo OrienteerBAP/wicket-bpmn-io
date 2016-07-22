@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 
         config: {
             source: 'src/main/resources/org/orienteer/wicketbpmnio/component',
-            dist: 'target/src/resources/org/orienteer/wicketbpmnio/component'
+            dist: 'target/classes/org/orienteer/wicketbpmnio/component'
         },
 
         mkdir: {
@@ -28,18 +28,18 @@ module.exports = function(grunt) {
 
         browserify: {
             options: {
-                browserifyOptions: {
-                    debug: true,
-                    list: true,
-                    insertGlobalVars: {
-                        process: function () {
-                            return 'undefined';
-                        },
-                        Buffer: function () {
-                            return 'undefined';
-                        }
-                    }
-                },
+                // browserifyOptions: {
+                    // debug: true,
+                    // list: true,
+                    // insertGlobalVars: {
+                        // process: function () {
+                            // return 'undefined';
+                        // },
+                        // Buffer: function () {
+                            // return 'undefined';
+                        // }
+                    // }
+                // },
                 transform: [ 'brfs' ]
             },
             app: {
@@ -65,6 +65,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', [ 'mkdir:target', 'browserify:app', 'uglify:target', 'clean:target']);
+    grunt.registerTask('build', [ 'mkdir:target', 'browserify:app'/*, 'uglify:target', 'clean:target'*/]);
 
 };

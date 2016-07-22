@@ -1,7 +1,6 @@
 {
   "name": "wicket-bpmn-io",
   "version": "0.0.2",
-  "main": "src/main/java/org/orienteer/wicketbpmnio/component/common.js",
   "dependencies": {
     "brfs": "^1.2.0",
     "grunt": "~1.0.1",
