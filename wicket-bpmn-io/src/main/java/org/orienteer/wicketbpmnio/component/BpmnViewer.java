@@ -16,7 +16,7 @@ import org.apache.wicket.util.template.TextTemplate;
 
 public class BpmnViewer extends GenericPanel<String> {
 
-	private static final JavaScriptResourceReference BPMN_VIEWER_JS = new JavaScriptResourceReference(BpmnViewer.class, "bpmnviewer.js");
+	private static final JavaScriptResourceReference BPMN_VIEWER_JS = new JavaScriptResourceReference(BpmnViewer.class, "bpmnviewer.min.js");
 	
 	public BpmnViewer(String id, IModel<String> xmlModel) {
 		super(id, xmlModel);

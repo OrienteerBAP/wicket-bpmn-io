@@ -28,23 +28,24 @@ module.exports = function(grunt) {
 
         browserify: {
             options: {
-                // browserifyOptions: {
-                    // debug: true,
-                    // list: true,
-                    // insertGlobalVars: {
-                        // process: function () {
-                            // return 'undefined';
-                        // },
-                        // Buffer: function () {
-                            // return 'undefined';
-                        // }
-                    // }
-                // },
+                 browserifyOptions: {
+                     debug: true,
+                     list: true,
+                     insertGlobalVars: {
+                         process: function () {
+                             return 'undefined';
+                         },
+                         Buffer: function () {
+                             return 'undefined';
+                         }
+                     }
+                 },
                 transform: [ 'brfs' ]
             },
             app: {
                 files: {
-                    '<%= config.dist %>/bpmnviewer.js': ['<%= config.source %>/bpmnviewer.js']
+                    '<%= config.dist %>/bpmnviewer.js': ['<%= config.source %>/bpmnviewer.js'],
+                    '<%= config.dist %>/bpmnmodeler.js': ['<%= config.source %>/bpmnmodeler.js']
                 }
             }
         },
@@ -55,16 +56,17 @@ module.exports = function(grunt) {
             },
             target: {
                 files: {
-                    '<%= config.dist %>/bpmnviewer.min.js': ['<%= config.dist %>/bpmnviewer.js']
+                    '<%= config.dist %>/bpmnviewer.min.js': ['<%= config.dist %>/bpmnviewer.js'],
+                    '<%= config.dist %>/bpmnmodeler.min.js': ['<%= config.dist %>/bpmnmodeler.js']
                 }
             }
         },
 
         clean: {
-            target: ['<%= config.dist %>/bpmnviewer.js']
+            target: ['<%= config.dist %>/bpmnviewer.js', '<%= config.dist %>/bpmnmodeler.js']
         }
     });
 
-    grunt.registerTask('build', [ 'mkdir:target', 'browserify:app'/*, 'uglify:target', 'clean:target'*/]);
+    grunt.registerTask('build', [ 'mkdir:target', 'browserify:app', 'uglify:target', 'clean:target']);
 
 };
