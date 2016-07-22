@@ -1,0 +1,24 @@
+{
+  "name": "wicket-bpmn-io",
+  "version": "0.0.2",
+  "dependencies": {
+    "brfs": "^1.2.0",
+    "grunt": "~1.0.1",
+    "grunt-cli": "*",
+    "grunt-browserify": "^5.0.0",
+    "grunt-mkdir": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-connect": "~1.0.2",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-watch": "~1.0.0",
+    "load-grunt-tasks": "~3.5.0",
+    "bpmn-js": "^0.15.0",
+    "bpmn-js-properties-panel": "^0.7.0",
+    "camunda-bpmn-moddle": "^0.5.1",
+    "diagram-js": "^0.15.0",
+    "lodash": "^3.0.0"
+  }
+}

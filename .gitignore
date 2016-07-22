@@ -9,3 +9,5 @@ release.properties
 .project
 .settings/
 build.cmd
+node/
+node_modules/
