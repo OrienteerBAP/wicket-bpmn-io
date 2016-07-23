@@ -45,7 +45,11 @@ module.exports = function(grunt) {
             app: {
                 files: {
                     '<%= config.dist %>/bpmnviewer.js': ['<%= config.source %>/bpmnviewer.js'],
-                    '<%= config.dist %>/bpmnmodeler.js': ['<%= config.source %>/bpmnmodeler.js']
+                    '<%= config.dist %>/bpmnmodeler.js': ['<%= config.source %>/bpmnmodeler.js'],
+                    '<%= config.dist %>/dmnviewer.js': ['<%= config.source %>/dmnviewer.js'],
+                    '<%= config.dist %>/dmnvmodeler.js': ['<%= config.source %>/dmnmodeler.js'],
+                    '<%= config.dist %>/cmmnviewer.js': ['<%= config.source %>/cmmnviewer.js'],
+                    '<%= config.dist %>/cmmnmodeler.js': ['<%= config.source %>/cmmnmodeler.js'],
                 }
             }
         },
@@ -57,13 +61,19 @@ module.exports = function(grunt) {
             target: {
                 files: {
                     '<%= config.dist %>/bpmnviewer.min.js': ['<%= config.dist %>/bpmnviewer.js'],
-                    '<%= config.dist %>/bpmnmodeler.min.js': ['<%= config.dist %>/bpmnmodeler.js']
+                    '<%= config.dist %>/bpmnmodeler.min.js': ['<%= config.dist %>/bpmnmodeler.js'],
+                    '<%= config.dist %>/dmnviewer.min.js': ['<%= config.dist %>/dmnviewer.js'],
+                    '<%= config.dist %>/dmnmodeler.min.js': ['<%= config.dist %>/dmnmodeler.js'],
+                    '<%= config.dist %>/cmmnviewer.min.js': ['<%= config.dist %>/cmmnviewer.js'],
+                    '<%= config.dist %>/cmmnmodeler.min.js': ['<%= config.dist %>/cmmnmodeler.js'],
                 }
             }
         },
 
         clean: {
-            target: ['<%= config.dist %>/bpmnviewer.js', '<%= config.dist %>/bpmnmodeler.js']
+            target: ['<%= config.dist %>/bpmnviewer.js', '<%= config.dist %>/bpmnmodeler.js',
+                     '<%= config.dist %>/dmnviewer.js', '<%= config.dist %>/dmnmodeler.js',
+                     '<%= config.dist %>/cmmnviewer.js', '<%= config.dist %>/cmmnmodeler.js']
         }
     });
 
