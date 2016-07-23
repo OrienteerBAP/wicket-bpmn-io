@@ -1,4 +1,5 @@
 var container = '${componentId}',
-    parent = '${parentId}';
+    parent = '${parentId}',
+    dropZone = '${dropZone}';
 
-installBpmnModeler(container, parent);
+installBpmnModeler(container, parent, dropZone);

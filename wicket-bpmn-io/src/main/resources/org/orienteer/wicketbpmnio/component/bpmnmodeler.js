@@ -3,7 +3,7 @@ var propertiesPanelModule = require('bpmn-js-properties-panel'),
     camundaModdleDescriptor = require('camunda-bpmn-moddle/resources/camunda'),
     BpmnModeler = require('bpmn-js/lib/Modeler');
 
-window.installBpmnModeler = function(container, parent) {
+window.installBpmnModeler = function(container, parent, dropZone, newDiagramXML) {
 
     var bpmnModeler = new BpmnModeler({
         container: '#' + container,
@@ -18,5 +18,119 @@ window.installBpmnModeler = function(container, parent) {
             camunda: camundaModdleDescriptor
         }
     });
+
+    function createNewDiagram() {
+        openDiagram(newDiagramXML);
+    };
+
+    function openDiagram(xml) {
+        bpmnModeler.importXML(xml, function(err) {
+            if (err) {
+              dropZone
+                .removeClass('with-diagram')
+                .addClass('with-error');
+
+              dropZone.find('.error pre').text(err.message);
+
+              console.error(err);
+            } else {
+              dropZone
+                .removeClass('with-error')
+                .addClass('with-diagram');
+            }
+        });
+    };
+
+    function saveSVG(done) {
+      bpmnModeler.saveSVG(done);
+    };
+
+    function saveDiagram(done) {
+
+      bpmnModeler.saveXML({ format: true }, function(err, xml) {
+        done(err, xml);
+      });
+    };
+
+    function registerFileDrop(container, callback) {
+
+      function handleFileSelect(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        var files = e.dataTransfer.files,
+            file = files[0],
+            reader = new FileReader();
+
+        reader.onload = function(e) {
+          var xml = e.target.result;
+          callback(xml);
+        };
+
+        reader.readAsText(file);
+      };
+
+      function handleDragOver(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'copy';
+      }
+
+      container.get(0).addEventListener('dragover', handleDragOver, false);
+      container.get(0).addEventListener('drop', handleFileSelect, false);
+    };
+
+    if (!window.FileList || !window.FileReader) {
+      window.alert(
+        'Looks like you use an older browser that does not support drag and drop. ' +
+        'Try using Chrome, Firefox or the Internet Explorer > 10.');
+    } else {
+      registerFileDrop(dropZone, openDiagram);
+    }
+
+    $(document).on('ready', function() {
+        $('#js-create-diagram').click(function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            createNewDiagram();
+        });
+
+        var downloadLink = $('#js-download-diagram');
+        var downloadSvgLink = $('#js-download-svg');
+
+        $('.buttons a').click(function(e) {
+            if (!$(this).is('.active')) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+        });
+
+        function setEncoded(link, name, data) {
+            var encodedData = encodeURIComponent(data);
+
+            if (data) {
+              link.addClass('active').attr({
+                'href': 'data:application/bpmn20-xml;charset=UTF-8,' + encodedData,
+                'download': name
+              });
+            } else {
+              link.removeClass('active');
+            }
+        }
+
+        var debounce = require('lodash/function/debounce');
+
+        var exportArtifacts = debounce(function() {
+            saveSVG(function(err, svg) {
+              setEncoded(downloadSvgLink, 'diagram.svg', err ? null : svg);
+            });
+
+            saveDiagram(function(err, xml) {
+              setEncoded(downloadLink, 'diagram.bpmn', err ? null : xml);
+            });
+        }, 500);
+
+        bpmnModeler.on('commandStack.changed', exportArtifacts);
+    }); 
 
 };
