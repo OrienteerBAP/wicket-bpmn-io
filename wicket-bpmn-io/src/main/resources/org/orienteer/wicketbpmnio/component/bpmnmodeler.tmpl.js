@@ -1,5 +1,6 @@
 var container = '${componentId}',
     parent = '${parentId}',
-    dropZone = '${dropZone}';
+    dropZone = '${dropZone}',
+    newDiagramXML = '${newDiagramXML}';
 
-installBpmnModeler(container, parent, dropZone);
+installBpmnModeler(container, parent, dropZone, newDiagramXML); 
