@@ -30,7 +30,7 @@ public class BpmnViewer extends GenericPanel<String> {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("componentId", getMarkupId());
-		params.put("xml", escapeAndWrapAsJavaScriptString(getDefaultModelObjectAsString()));
+		params.put("xml", escapeAndWrapAsJavaScriptString(getModelObject()));
 		TextTemplate template = new PackageTextTemplate(BpmnViewer.class, "bpmnviewer.tmpl.js");
 		response.render(OnDomReadyHeaderItem.forScript(template.asString(params)));
 	}

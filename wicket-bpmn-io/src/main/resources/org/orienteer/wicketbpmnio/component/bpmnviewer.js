@@ -4,8 +4,6 @@ window.installBpmnViewer = function(id, xml) {
 
 	var viewer = new BpmnViewer({ container: '#' + id });
 
-	xml = xml.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/&quot;/g, '"');
-
 	viewer.importXML(xml, function(err) {
 
 	  if (!err) {
