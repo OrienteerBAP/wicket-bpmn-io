@@ -14,7 +14,7 @@ import org.apache.wicket.util.string.Strings;
 import org.apache.wicket.util.template.PackageTextTemplate;
 import org.apache.wicket.util.template.TextTemplate;
 
-public class BpmnViewer extends GenericPanel<String> {
+public class BpmnViewer extends AbstractBpmnIoPanel {
 
 	private static final JavaScriptResourceReference BPMN_VIEWER_JS = new JavaScriptResourceReference(BpmnViewer.class, "bpmnviewer.min.js");
 	
@@ -33,16 +33,6 @@ public class BpmnViewer extends GenericPanel<String> {
 		params.put("xml", escapeAndWrapAsJavaScriptString(getModelObject()));
 		TextTemplate template = new PackageTextTemplate(BpmnViewer.class, "bpmnviewer.tmpl.js");
 		response.render(OnDomReadyHeaderItem.forScript(template.asString(params)));
-	}
-	
-	public static final CharSequence escapeAndWrapAsJavaScriptString(CharSequence content) {
-		if(content==null) return "null";
-		else {
-			content = JavaScriptUtils.escapeQuotes(content);
-			content = "\"" + content + "\""; 
-			content = Strings.replaceAll(content, "\n", "\" + \n\"");
-			return content;
-		}
 	}
 	
 }

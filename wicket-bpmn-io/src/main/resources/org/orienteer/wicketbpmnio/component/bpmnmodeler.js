@@ -3,12 +3,12 @@ var propertiesPanelModule = require('bpmn-js-properties-panel'),
     camundaModdleDescriptor = require('camunda-bpmn-moddle/resources/camunda'),
     BpmnModeler = require('bpmn-js/lib/Modeler');
 
-window.installBpmnModeler = function(container, parent, dropZone, newDiagramXML) {
+window.installBpmnModeler = function(componentId, diagramXML) {
 
     var bpmnModeler = new BpmnModeler({
-        container: '#' + container,
+        container: '#' + componentId + ' .canvas',
         propertiesPanel: {
-            parent: '#' + parent
+            parent: '#' + componentId + ' .properties-panel'
         },
         additionalModules: [
             propertiesPanelModule,
@@ -19,24 +19,12 @@ window.installBpmnModeler = function(container, parent, dropZone, newDiagramXML)
         }
     });
 
-    function createNewDiagram() {
-        openDiagram(newDiagramXML);
-    };
-
     function openDiagram(xml) {
         bpmnModeler.importXML(xml, function(err) {
             if (err) {
-              dropZone
-                .removeClass('with-diagram')
-                .addClass('with-error');
-
-              dropZone.find('.error pre').text(err.message);
-
-              console.error(err);
+            	alert(err);
             } else {
-              dropZone
-                .removeClass('with-error')
-                .addClass('with-diagram');
+            	bpmnModeler.get('canvas').zoom('fit-viewport');
             }
         });
     };
@@ -85,20 +73,17 @@ window.installBpmnModeler = function(container, parent, dropZone, newDiagramXML)
         'Looks like you use an older browser that does not support drag and drop. ' +
         'Try using Chrome, Firefox or the Internet Explorer > 10.');
     } else {
-      registerFileDrop(dropZone, openDiagram);
+      registerFileDrop($('#' + componentId + ' .canvas'), openDiagram);
     }
 
     $(document).on('ready', function() {
-        $('#js-create-diagram').click(function(e) {
-            e.stopPropagation();
-            e.preventDefault();
-            createNewDiagram();
-        });
+    	
+    	openDiagram(diagramXML);
 
-        var downloadLink = $('#js-download-diagram');
-        var downloadSvgLink = $('#js-download-svg');
+        var downloadLink = $('#'+componentId+' .download-diagram');
+        var downloadSvgLink = $('#'+componentId+' .download-svg');
 
-        $('.buttons a').click(function(e) {
+        $('#'+componentId+' .buttons a').click(function(e) {
             if (!$(this).is('.active')) {
               e.preventDefault();
               e.stopPropagation();

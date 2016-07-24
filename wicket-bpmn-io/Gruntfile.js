@@ -53,6 +53,41 @@ module.exports = function(grunt) {
                 }
             }
         },
+        
+        copy: {
+	        diagram_js: {
+	          files: [
+	            {
+	              src: resolvePath('diagram-js', 'assets/diagram-js.css'),
+	              dest: '<%= config.dist %>/css/diagram-js.css'
+	            }
+	          ]
+	        },
+	        bpmn_js: {
+	          files: [
+	            {
+	              expand: true,
+	              cwd: resolvePath('bpmn-js', 'assets'),
+	              src: ['**/*.*', '!**/*.js'],
+	              dest: '<%= config.dist %>/vendor'
+	            }
+	          ]
+	        }
+	      },
+	      less: {
+	          options: {
+	            dumpLineNumbers: 'comments',
+	            paths: [
+	              'node_modules'
+	            ]
+	          },
+
+	          styles: {
+	            files: {
+	              '<%= config.dist %>/style.css': '<%= config.source %>/style.less'
+	            }
+	          }
+	        },
 
         uglify: {
             options: {
@@ -77,6 +112,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', [ 'mkdir:target', 'browserify:app', 'uglify:target', 'clean:target']);
+    grunt.registerTask('build', [ 'mkdir:target', 'browserify:app', 'uglify:target', 'copy', 'less', 'clean:target']);
 
 };

@@ -6,6 +6,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.io.IOUtils;
 import org.apache.wicket.util.template.PackageTextTemplate;
 import org.apache.wicket.util.template.TextTemplate;
+import org.orienteer.wicketbpmnio.component.BpmnModeler;
 import org.orienteer.wicketbpmnio.component.BpmnViewer;
 //import org.apache.wicket.devutils.debugbar.DebugBar;
 
@@ -15,7 +16,8 @@ public class HomePage extends WebPage {
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 		TextTemplate exampleXml = new PackageTextTemplate(HomePage.class, "example.bpmn");
-		add(new BpmnViewer("bpmnViewer", Model.of(exampleXml.asString())));
+//		add(new BpmnViewer("bpmnViewer", Model.of(exampleXml.asString())));
+		add(new BpmnModeler("bpmnViewer", Model.of(exampleXml.asString())));
     }
 	
 }
