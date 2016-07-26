@@ -76,6 +76,12 @@ module.exports = function(grunt) {
                       src: 'dmn-js*',
                       expand: true,
                       dest: '<%= config.dist %>/fonts/'
+                  },
+                  {
+                      expand: true,
+                      cwd: resolvePath('cmmn-js', 'assets'),
+                      src: ['**/*.*', '!**/*.js'],
+                      dest: '<%= config.dist %>/vendor'
                   }
 	          ]
 	        }

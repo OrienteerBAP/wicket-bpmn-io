@@ -30,6 +30,7 @@ public class WicketApplication extends WebApplication
 		mountPage("/bpmnViewer", BpmnViewerPage.class);
 		mountPage("/dmnViewer", DmnViewerPage.class);
 		mountPage("/cmmnViewer", CmmnViewerPage.class);
+		mountPage("/cmmnModeler", CmmnModelerPage.class);
 		// add your configuration here
 	}
 }
