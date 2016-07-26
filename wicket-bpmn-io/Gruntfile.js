@@ -47,7 +47,7 @@ module.exports = function(grunt) {
                     '<%= config.dist %>/bpmnviewer.js': ['<%= config.source %>/bpmnviewer.js'],
                     '<%= config.dist %>/bpmnmodeler.js': ['<%= config.source %>/bpmnmodeler.js'],
                     '<%= config.dist %>/dmnviewer.js': ['<%= config.source %>/dmnviewer.js'],
-                    '<%= config.dist %>/dmnvmodeler.js': ['<%= config.source %>/dmnmodeler.js'],
+                    '<%= config.dist %>/dmnmodeler.js': ['<%= config.source %>/dmnmodeler.js'],
                     '<%= config.dist %>/cmmnviewer.js': ['<%= config.source %>/cmmnviewer.js'],
                     '<%= config.dist %>/cmmnmodeler.js': ['<%= config.source %>/cmmnmodeler.js'],
                 }
@@ -70,7 +70,13 @@ module.exports = function(grunt) {
 	              cwd: resolvePath('bpmn-js', 'assets'),
 	              src: ['**/*.*', '!**/*.js'],
 	              dest: '<%= config.dist %>/vendor'
-	            }
+	            },
+                  {
+                      cwd: 'node_modules/dmn-js/fonts/',
+                      src: 'dmn-js*',
+                      expand: true,
+                      dest: '<%= config.dist %>/fonts/'
+                  }
 	          ]
 	        }
 	      },
@@ -84,7 +90,8 @@ module.exports = function(grunt) {
 
 	          styles: {
 	            files: {
-	              '<%= config.dist %>/style.css': '<%= config.source %>/style.less'
+	              '<%= config.dist %>/style.css': '<%= config.source %>/style.less',
+                    '<%= config.dist %>/css/dmn-js.css': 'node_modules/dmn-js/styles/dmn-js.less'
 	            }
 	          }
 	        },
