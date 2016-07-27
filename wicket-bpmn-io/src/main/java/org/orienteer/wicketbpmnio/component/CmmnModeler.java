@@ -37,7 +37,7 @@ public class CmmnModeler extends AbstractBpmnIoPanel {
         response.render(JavaScriptHeaderItem.forReference(CMMN_MODELER_JS));
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("componentId", getMarkup());
+        params.put("componentId", getMarkupId());
         params.put("xml", escapeAndWrapAsJavaScriptString(getModelObject()));
         TextTemplate template = new PackageTextTemplate(CmmnModeler.class, "cmmnmodeler.tmpl.js");
         response.render(OnDomReadyHeaderItem.forScript(template.asString(params)));
