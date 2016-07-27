@@ -1,7 +1,4 @@
-var canvas = '${canvas}',
-    container = '${container}',
-    download = '${download}',
-    newTableXml = '${newTableXml}',
-    exampleXml = '${exampleXml}';
+var componentId = '${componentId}',
+    xml = ${xml};
 
-installDmnModeler(canvas, container, download, newTableXml, exampleXml);
+installDmnModeler(componentId, xml);

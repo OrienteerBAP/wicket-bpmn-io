@@ -1,5 +1,4 @@
-var canvas = '${canvas}',
-    parent = '${parent}',
-    container = '${container}';
+var componentId = '${componentId}',
+    xml = ${xml};
 
-installCmmnModeler(canvas, parent, container);
+installCmmnModeler(componentId, xml);
