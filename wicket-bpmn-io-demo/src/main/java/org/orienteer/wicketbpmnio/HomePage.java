@@ -1,11 +1,14 @@
 package org.orienteer.wicketbpmnio;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.template.PackageTextTemplate;
 import org.apache.wicket.util.template.TextTemplate;
 import org.orienteer.wicketbpmnio.component.BpmnModeler;
+import org.orienteer.wicketbpmnio.component.BpmnViewer;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +28,13 @@ public class HomePage extends WebPage {
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 		TextTemplate exampleXml = new PackageTextTemplate(HomePage.class, "example.bpmn");
-		add(new BpmnModeler("bpmnModeler", Model.of(XML)));
+		Form<String> form = new Form<String>("form");
+		add(form);
+
+		IModel<String> model = Model.of(XML);
+
+		form.add(new BpmnModeler("bpmnModeler", model));
+		form.add(new BpmnViewer("bpmnViewer", model));
     }
 	
 }

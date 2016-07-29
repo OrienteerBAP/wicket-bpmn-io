@@ -1,4 +1,4 @@
 var componentId = '${componentId}',
-    xml = ${xml};
+    xmlComponentId = '${xmlComponentId}';
 
-installBpmnModeler(componentId, xml); 
+installBpmnModeler(componentId, xmlComponentId);

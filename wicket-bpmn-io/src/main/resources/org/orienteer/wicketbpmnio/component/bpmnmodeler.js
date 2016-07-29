@@ -3,7 +3,7 @@ var propertiesPanelModule = require('bpmn-js-properties-panel'),
     camundaModdleDescriptor = require('camunda-bpmn-moddle/resources/camunda'),
     BpmnModeler = require('bpmn-js/lib/Modeler');
 
-window.installBpmnModeler = function(componentId, diagramXML) {
+window.installBpmnModeler = function(componentId, xmlComponentId) {
 
     var bpmnModeler = new BpmnModeler({
         container: '#' + componentId + ' .canvas',
@@ -78,7 +78,7 @@ window.installBpmnModeler = function(componentId, diagramXML) {
 
     $(document).on('ready', function() {
     	
-    	openDiagram(diagramXML);
+    	openDiagram($('#' + xmlComponentId).val());
 
         var downloadLink = $('#'+componentId+' .download-diagram');
         var downloadSvgLink = $('#'+componentId+' .download-svg');
@@ -111,7 +111,8 @@ window.installBpmnModeler = function(componentId, diagramXML) {
             });
 
             saveDiagram(function(err, xml) {
-              setEncoded(downloadLink, 'diagram.bpmn', err ? null : xml);
+                setEncoded(downloadLink, 'diagram.bpmn', err ? null : xml);
+                $('#' + xmlComponentId).val(xml);
             });
         }, 500);
 
