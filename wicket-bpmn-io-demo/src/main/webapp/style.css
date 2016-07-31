@@ -1,7 +1,3 @@
-body, p, li, a { font-family: georgia, times, serif;font-size:13pt;}
-h1, h2, h3 { font-family: 'Yanone Kaffeesatz', arial, serif; }
-body { margin:0;padding:0;}
-
 body,
 html {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -12,22 +8,7 @@ html {
 	margin: 0;
 }
 
-.djs-palette {
-	width: 46px!important;
-	top: -10px;
-	left: -30px;
-}
-.djs-container {
-	position: static!important;
-}
-.properties-panel {
-	overflow: hidden!important;
-	top: -25px!important;
-	right: -50px!important;
-}
-
 #hd {
-	width : 100%;
 	height : 87px;
 	background-color : #092E67;
 	margin-top : 0;
@@ -35,6 +16,38 @@ html {
 	border-bottom : 1px solid #888;
 	z-index : 0;
 }
+
+#logo,#bd {
+	margin: 0 auto;
+	padding: 25px 50px 0 50px;
+}
+#logo h1 {
+	color : white;
+	font-size:36pt;
+	display: inline;
+}
+#logo img {
+	display:inline;
+	vertical-align: bottom;
+	margin-left : 50px;
+	margin-right : 5px;
+}
+#logo, #logo h1 { margin-top : 0; padding-top : 0;}
+
+#bd {
+	z-index : 1;
+	margin: 0 auto;
+	width: 80%;
+	height: 720px;
+	background-color : #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 0px 0px 10px #888;
+	-webkit-box-shadow: 0px 0px 10px #888;
+	box-shadow: 0px 0px 10px #888;
+}
+
 #ft {
 	position : absolute;
 	bottom : 0;
@@ -44,48 +57,24 @@ html {
 	border-top : 1px solid #888;
 	z-index : 0;
 }
-#logo,#bd {
-	width : 1000px;
-	height: 100%;
-	margin: 0 auto;
-	padding: 25px 50px 0 50px;
-}
-#logo h1 {
-	color : white;
-	font-size:36pt;
-	display: inline;
-}
-#logo img { 
-	display:inline;
-	vertical-align: bottom;
-	margin-left : 50px;
-	margin-right : 5px;
-}
-body { margin-top : 0; padding-top : 0;}
-#logo, #logo h1 { margin-top : 0; padding-top : 0;}
-#bd {
-	position : absolute;
-	top : 75px;
-	/*bottom : 75px;*/
-	left : 50%;
-	margin-left : -550px;
-	z-index : 1;
+
+#js-properties-panel {
+	position: relative;
+	height: 700px;
+	right: -85%;
+	top: -20px;
+	padding: 0px;
+	bottom: 0;
+	width: 260px;
+	z-index: 10;
+	border-left: 1px solid #ccc;
 	overflow: auto;
-	background-color : #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-moz-box-shadow: 0px 0px 10px #888;
-	-webkit-box-shadow: 0px 0px 10px #888;
-	box-shadow: 0px 0px 10px #888;
 }
-a, a:visited, a:hover, a:active {
-	color : #6493D2;
+
+#js-properties-panel:empty {
+ display: none;
 }
-h2 {
-	padding : 0; margin:0;
-	font-size:36pt;
-	color:#FF5500;
+#js-properties-panel > .djs-properties-panel {
+  padding-bottom: 70px;
+  min-height:100%;
 }
-h3 {
-	padding : 0; marg

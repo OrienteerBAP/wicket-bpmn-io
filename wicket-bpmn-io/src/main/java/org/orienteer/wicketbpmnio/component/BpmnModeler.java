@@ -44,6 +44,8 @@ public class BpmnModeler extends AbstractBpmnIoPanel {
         response.render(CssHeaderItem.forReference(BPMN_CSS));
         response.render(JavaScriptHeaderItem.forReference(BPMN_MODELER_JS));
 
+
+
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("componentId", getMarkupId());
         params.put("xmlComponentId", xml.getMarkupId());

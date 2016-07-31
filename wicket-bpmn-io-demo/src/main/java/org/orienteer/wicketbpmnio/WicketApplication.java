@@ -27,6 +27,8 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 
+		getMarkupSettings().setStripWicketTags(true);
+
 		mountPage("/bpmnViewer", BpmnViewerPage.class);
 		mountPage("/dmnViewer", DmnViewerPage.class);
 		mountPage("/dmnModeler", DmnModelerPage.class);
