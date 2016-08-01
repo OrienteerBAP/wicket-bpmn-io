@@ -27,7 +27,6 @@ public class HomePage extends WebPage {
 
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
-		TextTemplate exampleXml = new PackageTextTemplate(HomePage.class, "example.bpmn");
 		Form<String> form = new Form<String>("form");
 		add(form);
 
