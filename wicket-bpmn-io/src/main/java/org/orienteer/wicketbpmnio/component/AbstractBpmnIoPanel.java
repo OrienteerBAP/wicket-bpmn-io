@@ -15,10 +15,9 @@ public class AbstractBpmnIoPanel extends GenericPanel<String> {
 	public static final CharSequence escapeAndWrapAsJavaScriptString(CharSequence content) {
 		if(content==null) return "null";
 		else {
-			content = JavaScriptUtils.escapeQuotes(content);
-			content = "\"" + content + "\""; 
-			content = Strings.replaceAll(content, "\n", "\" + \n\"");
-			return content;
+			String ret = "\""+JavaScriptUtils.escapeQuotes(content)+"\"";
+			ret = ret.replaceAll("\\r?\\n", "\" + \n\"").replace("\r", "");
+			return ret;
 		}
 	}
 	
