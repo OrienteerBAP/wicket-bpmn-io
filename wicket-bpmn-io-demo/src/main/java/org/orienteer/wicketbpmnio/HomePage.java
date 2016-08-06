@@ -1,6 +1,8 @@
 package org.orienteer.wicketbpmnio;
 
+import org.apache.wicket.markup.html.GenericWebPage;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -10,7 +12,7 @@ import org.apache.wicket.util.template.TextTemplate;
 import org.orienteer.wicketbpmnio.component.BpmnModeler;
 import org.orienteer.wicketbpmnio.component.BpmnViewer;
 
-public class HomePage extends WebPage {
+public class HomePage extends GenericWebPage<String> {
 	private static final long serialVersionUID = 1L;
 
 	public static final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+
@@ -25,16 +27,20 @@ public class HomePage extends WebPage {
 			"  </bpmndi:BPMNDiagram>"+
 			"</bpmn2:definitions>";
 
-	public HomePage(final PageParameters parameters) {
-		super(parameters);
-		TextTemplate exampleXml = new PackageTextTemplate(HomePage.class, "example.bpmn");
+	public HomePage() {
+		super(Model.of(XML));
 		Form<String> form = new Form<String>("form");
 		add(form);
 
-		IModel<String> model = Model.of(XML);
-
+		IModel<String> model = getModel();
 		form.add(new BpmnModeler("bpmnModeler", model));
 		form.add(new BpmnViewer("bpmnViewer", model));
+		form.add(new Button("submit") {
+			@Override
+			public void onSubmit() {
+				System.out.println("XML: "+HomePage.this.getModelObject());
+			}
+		});
     }
 	
 }

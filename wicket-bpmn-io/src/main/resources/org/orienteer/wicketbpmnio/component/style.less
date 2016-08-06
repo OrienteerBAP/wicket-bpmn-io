@@ -1,15 +1,18 @@
 .bpmn {
 	.content {
-		width: 80%;
-		margin: 0 auto;
+		height: 720px;
 
 		.canvas {
-			top: 80px!important;
-			width: 80%;
+			top: 80px!important;			
 			height: 720px;
 			margin: 0 auto;
+			width: 80%;
+			margin-left: -40px;
+			float: left;
 
 			.bjs-container {
+				height: 720px;				
+
 				.djs-container {
 					.djs-palette {
 						width: 46px!important;
@@ -50,23 +53,16 @@
 	}
 	
 	.properties-panel {
-  		position: absolute;
-  		top: 0;
-  		bottom: 0;
-  		right: 0;
-  		width: 33%;
-  		max-width: 300px;
-  		z-index: 10;
-  		border-left: 1px solid #ccc;
-  		overflow: auto;
-  		&:empty {
-    		display: none;
-  		}
-  		> .djs-properties-panel {
-    		padding-bottom: 70px;
-    		min-height:100%;
-  		}
+  		width: 260px;
+  		float: right;
+		height: 640px;
+		overflow: auto;
 	}	
+}
+
+.cjs-container {
+	height: 720px!important;
+	overflow: auto;
 }
 
 @import "bpmn-js-properties-panel/styles/properties";

@@ -1,9 +1,12 @@
 package org.orienteer.wicketbpmnio;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.orienteer.wicketbpmnio.component.CmmnModeler;
+import org.orienteer.wicketbpmnio.component.CmmnViewer;
 
 /**
  * @author Kirill Mukhov
@@ -35,6 +38,12 @@ public class CmmnModelerPage extends WebPage {
 
     public CmmnModelerPage(final PageParameters parameters) {
         super(parameters);
-        add(new CmmnModeler("cmmnModeler", Model.of(XML)));
+        Form<String> form = new Form<String>("form");
+        add(form);
+
+        IModel<String> model = Model.of(XML);
+
+        form.add(new CmmnModeler("cmmnModeler", model));
+        form.add(new CmmnViewer("cmmnViewer", model));
     }
 }
