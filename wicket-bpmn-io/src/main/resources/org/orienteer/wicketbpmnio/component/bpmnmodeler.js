@@ -29,16 +29,16 @@ window.installBpmnModeler = function(componentId, xmlComponentId) {
         });
     };
 
-    function saveSVG(done) {
-      bpmnModeler.saveSVG(done);
-    };
-
-    function saveDiagram(done) {
-
-      bpmnModeler.saveXML({ format: true }, function(err, xml) {
-        done(err, xml);
-      });
-    };
+    // function saveSVG(done) {
+    //   bpmnModeler.saveSVG(done);
+    // };
+    //
+    // function saveDiagram(done) {
+    //
+    //   bpmnModeler.saveXML({ format: true }, function(err, xml) {
+    //     done(err, xml);
+    //   });
+    // };
 
     function registerFileDrop(container, callback) {
 
@@ -80,8 +80,8 @@ window.installBpmnModeler = function(componentId, xmlComponentId) {
     	
     	openDiagram($('#' + xmlComponentId).val());
 
-        var downloadLink = $('#'+componentId+' .download-diagram');
-        var downloadSvgLink = $('#'+componentId+' .download-svg');
+        // var downloadLink = $('#'+componentId+' .download-diagram');
+        // var downloadSvgLink = $('#'+componentId+' .download-svg');
 
         $('#'+componentId+' .buttons a').click(function(e) {
             if (!$(this).is('.active')) {
@@ -90,33 +90,33 @@ window.installBpmnModeler = function(componentId, xmlComponentId) {
             }
         });
 
-        function setEncoded(link, name, data) {
-            var encodedData = encodeURIComponent(data);
+        // function setEncoded(link, name, data) {
+        //     var encodedData = encodeURIComponent(data);
+        //
+        //     if (data) {
+        //       link.addClass('active').attr({
+        //         'href': 'data:application/bpmn20-xml;charset=UTF-8,' + encodedData,
+        //         'download': name
+        //       });
+        //     } else {
+        //       link.removeClass('active');
+        //     }
+        // }
 
-            if (data) {
-              link.addClass('active').attr({
-                'href': 'data:application/bpmn20-xml;charset=UTF-8,' + encodedData,
-                'download': name
-              });
-            } else {
-              link.removeClass('active');
-            }
-        }
-
-        var debounce = require('lodash/function/debounce');
-
-        var exportArtifacts = debounce(function() {
-            saveSVG(function(err, svg) {
-              setEncoded(downloadSvgLink, 'diagram.svg', err ? null : svg);
-            });
-
-            saveDiagram(function(err, xml) {
-                setEncoded(downloadLink, 'diagram.bpmn', err ? null : xml);
-                $('#' + xmlComponentId).val(xml);
-            });
-        }, 500);
-
-        bpmnModeler.on('commandStack.changed', exportArtifacts);
+        // var debounce = require('lodash/function/debounce');
+        //
+        // var exportArtifacts = debounce(function() {
+        //     saveSVG(function(err, svg) {
+        //       setEncoded(downloadSvgLink, 'diagram.svg', err ? null : svg);
+        //     });
+        //
+        //     saveDiagram(function(err, xml) {
+        //         setEncoded(downloadLink, 'diagram.bpmn', err ? null : xml);
+        //         $('#' + xmlComponentId).val(xml);
+        //     });
+        // }, 500);
+        //
+        // bpmnModeler.on('commandStack.changed', exportArtifacts);
     }); 
 
 };
