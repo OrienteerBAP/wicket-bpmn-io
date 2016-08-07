@@ -1,11 +1,19 @@
 package org.orienteer.wicketbpmnio;
 
+import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.event.Broadcast;
+import org.apache.wicket.event.IEventSink;
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.GenericWebPage;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.component.IRequestablePage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.template.PackageTextTemplate;
 import org.apache.wicket.util.template.TextTemplate;
@@ -26,6 +34,10 @@ public class HomePage extends GenericWebPage<String> {
 			"    </bpmndi:BPMNPlane>"+
 			"  </bpmndi:BPMNDiagram>"+
 			"</bpmn2:definitions>";
+	
+	private BpmnModeler bpmnModeler;
+	private BpmnViewer bpmnViewer;
+	private boolean viewerMode = true;
 
 	public HomePage() {
 		super(Model.of(XML));
@@ -33,14 +45,38 @@ public class HomePage extends GenericWebPage<String> {
 		add(form);
 
 		IModel<String> model = getModel();
-		form.add(new BpmnModeler("bpmnModeler", model));
-		form.add(new BpmnViewer("bpmnViewer", model));
-		form.add(new Button("submit") {
+		form.add((bpmnModeler = new BpmnModeler("bpmnModeler", model)));
+		form.add((bpmnViewer = new BpmnViewer("bpmnViewer", model)));
+		updateVisibility();
+		bpmnModeler.setOutputMarkupPlaceholderTag(true);
+		bpmnViewer.setOutputMarkupPlaceholderTag(true);
+		/*form.add(new AjaxButton("submit") {
 			@Override
 			public void onSubmit() {
 				System.out.println("XML: "+HomePage.this.getModelObject());
 			}
+		});*/
+		
+		form.add(new AjaxButton("submit") {
+			@Override
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+				viewerMode = !viewerMode;
+				bpmnModeler.setVisible(!viewerMode);
+				bpmnViewer.setVisible(viewerMode);
+				target.add(this, bpmnModeler, bpmnViewer);
+			}
+			
+			@Override
+			protected void onComponentTag(ComponentTag tag) {
+				super.onComponentTag(tag);
+				tag.put("value", viewerMode?"Edit":"View");
+			}
 		});
     }
+	
+	private void updateVisibility() {
+		bpmnModeler.setVisible(!viewerMode);
+		bpmnViewer.setVisible(viewerMode);
+	}
 	
 }

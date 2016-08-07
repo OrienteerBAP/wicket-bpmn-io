@@ -76,9 +76,8 @@ window.installBpmnModeler = function(componentId, xmlComponentId) {
       registerFileDrop($('#' + componentId + ' .canvas'), openDiagram);
     }
 
-    $(document).on('ready', function() {
-    	
-    	openDiagram($('#' + xmlComponentId).val());
+//    $(document).on('ready', function() {
+    $(function(){
 
         var downloadLink = $('#'+componentId+' .download-diagram');
         var downloadSvgLink = $('#'+componentId+' .download-svg');
@@ -117,6 +116,7 @@ window.installBpmnModeler = function(componentId, xmlComponentId) {
         }, 500);
 
         bpmnModeler.on('commandStack.changed', exportArtifacts);
+        openDiagram($('#' + xmlComponentId).val());
     }); 
 
 };
