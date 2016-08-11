@@ -37,10 +37,10 @@ public class HomePage extends GenericWebPage<String> {
 	
 	private BpmnModeler bpmnModeler;
 	private BpmnViewer bpmnViewer;
-	private boolean viewerMode = true;
+	private boolean viewerMode = false;
 
 	public HomePage() {
-		super(Model.of(XML));
+		super(Model.of(""));
 		Form<String> form = new Form<String>("form");
 		add(form);
 
