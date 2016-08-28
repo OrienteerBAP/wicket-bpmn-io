@@ -1,7 +1,8 @@
 var propertiesPanelModule = require('bpmn-js-properties-panel'),
     propertiesProviderModule = require('bpmn-js-properties-panel/lib/provider/camunda'),
     camundaModdleDescriptor = require('camunda-bpmn-moddle/resources/camunda'),
-    BpmnModeler = require('bpmn-js/lib/Modeler');
+    BpmnModeler = require('bpmn-js/lib/Modeler'),
+    localization = require('./localization');
 
 var emptyXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+
 "<bpmn2:definitions xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:bpmn2=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" xsi:schemaLocation=\"http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd\" id=\"sample-diagram\" targetNamespace=\"http://bpmn.io/schema/bpmn\">"+
@@ -15,7 +16,13 @@ var emptyXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+
 "  </bpmndi:BPMNDiagram>"+
 "</bpmn2:definitions>";
 
-window.installBpmnModeler = function(componentId, xmlComponentId) {
+window.installBpmnModeler = function(componentId, xmlComponentId, locale) {
+
+    localization.initLocale(locale);
+
+    var customTranslate = {
+        translate: ['value', localization.translate]
+    };
 
     var bpmnModeler = new BpmnModeler({
         container: '#' + componentId + ' .canvas',
@@ -24,7 +31,8 @@ window.installBpmnModeler = function(componentId, xmlComponentId) {
         },
         additionalModules: [
             propertiesPanelModule,
-            propertiesProviderModule
+            propertiesProviderModule,
+            customTranslate
         ],
         moddleExtensions: {
             camunda: camundaModdleDescriptor

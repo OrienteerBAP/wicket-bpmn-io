@@ -1,4 +1,5 @@
 var componentId = '${componentId}',
-    xmlComponentId = '${xmlComponentId}';
+    xmlComponentId = '${xmlComponentId}',
+    locale = 'ru';
 
-installBpmnModeler(componentId, xmlComponentId);
+installBpmnModeler(componentId, xmlComponentId, locale);
