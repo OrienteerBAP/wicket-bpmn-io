@@ -6,6 +6,7 @@ var translation = null,
 module.exports = {
 
     translate: function customTranslate(template, replacements) {
+        if (!translation) return template;
 
         replacements = replacements || {};
 
@@ -20,6 +21,7 @@ module.exports = {
     initLocale: function(locale) {
         switch(locale) {
             case 'ru': translation = translationRu; break;
+            default: translation = null;
         };
     }
 
