@@ -49,6 +49,7 @@ public class BpmnModeler extends AbstractBpmnIoPanel {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("componentId", getMarkupId());
         params.put("xmlComponentId", xml.getMarkupId());
+        params.put("lang", getLocale().getLanguage());
         TextTemplate template = new PackageTextTemplate(BpmnModeler.class, "bpmnmodeler.tmpl.js");
         response.render(OnDomReadyHeaderItem.forScript(template.asString(params)));
     }
