@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.orienteer.wicket-bpmn-io</groupId>
     <artifactId>wicket-bpmn-io-parent</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>wicket-bpmn-io-parent</name>
     <description>Apache Wicket components for BPMN IO</description>
@@ -13,7 +13,7 @@
 	<url>https://github.com/OrienteerBAP/wicket-bpmn-io</url>
 	<connection>scm:git:ssh://github.com/OrienteerBAP/wicket-bpmn-io.git</connection>
 	<developerConnection>scm:git:ssh://git@github.com/OrienteerBAP/wicket-bpmn-io.git</developerConnection>
-	<tag>v1.0</tag>
+	<tag>HEAD</tag>
     </scm>
 
     <issueManagement>
